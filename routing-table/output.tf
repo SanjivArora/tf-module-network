@@ -1,3 +1,3 @@
 output "id" {
-  value = azurerm_route_table.this.id
+  value = azurerm_route_table.rt.id
 }
