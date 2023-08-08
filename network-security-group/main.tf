@@ -29,18 +29,16 @@ resource "azurerm_monitor_diagnostic_setting" "ds" {
   target_resource_id         = azurerm_network_security_group.nsg.id
   log_analytics_workspace_id = var.log_analytics_workspace_id
 
-  log {
+  enabled_log {
     category = "NetworkSecurityGroupEvent"
-    enabled  = true
     retention_policy {
       days    = 0
       enabled = false
     }
   }
 
-  log {
+  enabled_log {
     category = "NetworkSecurityGroupRuleCounter"
-    enabled  = true
     retention_policy {
       days    = 0
       enabled = false
