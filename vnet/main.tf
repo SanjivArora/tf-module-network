@@ -15,25 +15,3 @@ resource "azurerm_virtual_network_dns_servers" "vnet" {
   virtual_network_id = azurerm_virtual_network.vnet.id
   dns_servers        = var.dns_servers
 }
-
-resource "azurerm_monitor_diagnostic_setting" "ds" {
-  name                          = "ds-${lower("${var.environment}-${var.solution}-${var.resource_name}-${var.location_short}-${var.instance_number}")}"
-  target_resource_id            = azurerm_virtual_network.vnet.id
-  log_analytics_workspace_id    = var.log_analytics_workspace_id
-
-  enabled_log {
-    category        = "VMProtectionAlerts"
-    retention_policy {
-      days          = 0
-      enabled       = false
-    }
-  }
-  
-  metric {
-    category        = "AllMetrics"
-    retention_policy {
-      days          = 0
-      enabled       = false
-    }
-  }
-}
